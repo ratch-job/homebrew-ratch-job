@@ -4,22 +4,22 @@
 class RatchJob < Formula
   desc "ratch-job"
   homepage "https://github.com/ratch-job/ratch-job"
-  url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.4/ratchjob-x86_64-apple-darwin-v0.1.4.tar.gz"
-  version "v0.1.4"
+  url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-apple-darwin-v0.1.5.tar.gz"
+  version "v0.1.5"
   license "Apache-2.0 license"
 
   # depends_on "cmake" => :build
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.4/ratchjob-aarch64-apple-darwin-v0.1.4.tar.gz"
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-apple-darwin-v0.1.5.tar.gz"
     end
   end
 
   on_linux do
-    url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.4/ratchjob-x86_64-unknown-linux-musl-v0.1.4.tar.gz"
+    url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-unknown-linux-musl-v0.1.5.tar.gz"
     if Hardware::CPU.arm?
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.4/ratchjob-aarch64-unknown-linux-musl-v0.1.4.tar.gz"
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-unknown-linux-musl-v0.1.5.tar.gz"
     end
   end
 
