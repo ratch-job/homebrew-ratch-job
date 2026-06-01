@@ -1,47 +1,40 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class RatchJob < Formula
-  desc "ratch-job"
+  desc "分布式任务调度平台，兼容 xxl-job 协议"
   homepage "https://github.com/ratch-job/ratch-job"
-  url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-apple-darwin-v0.1.5.tar.gz"
-  version "v0.1.5"
-  license "Apache-2.0 license"
+  license "Apache-2.0"
 
-  # depends_on "cmake" => :build
-
-  on_macos do
+  if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-apple-darwin-v0.1.5.tar.gz"
+      sha256 "8f858a1073f09c0dbe60aa3eeb86cdfe13468ce214d726a57a12d2dc96abe9cf"
+    else
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-apple-darwin-v0.1.5.tar.gz"
+      sha256 "4a975b295be6aef907a9d7014a7890b80c8868616583110776b02d12a90bb1fe"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-unknown-linux-musl-v0.1.5.tar.gz"
+      sha256 "a499604cefaf8cc58a74704064c0d2aeca5f0dc002a04bab1a53c83848831b19"
+    else
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-unknown-linux-musl-v0.1.5.tar.gz"
+      sha256 "9340b46cea21ccf0817d72c156eddd973360849ff76df7b7786df41f6eba0cde"
     end
   end
 
-  on_linux do
-    url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-unknown-linux-musl-v0.1.5.tar.gz"
-    if Hardware::CPU.arm?
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-unknown-linux-musl-v0.1.5.tar.gz"
-    end
+  service do
+    run [opt_bin/"ratchjob"]
+    run_at_load true
+    keep_alive true
+    log_path var/"log/ratchjob.log"
+    error_log_path var/"log/ratchjob.log"
+    working_dir var/"lib/ratchjob"
   end
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    # Remove unrecognized options if warned by configure
-    # https://rubydoc.brew.sh/Formula.html#std_configure_args-instance_method
-    #system "./configure", *std_configure_args, "--disable-silent-rules"
-    # system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     bin.install "ratchjob"
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test ratch-job`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "#{bin}/ratchjob", "--version" 
+    system "#{bin}/ratchjob", "--version"
   end
 end
