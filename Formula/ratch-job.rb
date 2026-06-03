@@ -5,19 +5,19 @@ class RatchJob < Formula
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-apple-darwin-v0.1.5.tar.gz"
-      sha256 "8f858a1073f09c0dbe60aa3eeb86cdfe13468ce214d726a57a12d2dc96abe9cf"
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.2.2/ratchjob-aarch64-apple-darwin-v0.2.2.tar.gz"
+      sha256 "17bbedb22dd69c0cfaba3bfd389a49acc00ecaac97f82c5e53fcf84860047112"
     else
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-apple-darwin-v0.1.5.tar.gz"
-      sha256 "4a975b295be6aef907a9d7014a7890b80c8868616583110776b02d12a90bb1fe"
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.2.2/ratchjob-x86_64-apple-darwin-v0.2.2.tar.gz"
+      sha256 "658fb12772f39608ba3e5b49c5ad0f5f9ac262f45bc747807dba5e0649ef6a87"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-aarch64-unknown-linux-musl-v0.1.5.tar.gz"
-      sha256 "a499604cefaf8cc58a74704064c0d2aeca5f0dc002a04bab1a53c83848831b19"
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.2.2/ratchjob-aarch64-unknown-linux-musl-v0.2.2.tar.gz"
+      sha256 "877670bbce3b7fbc51802b97e4cbf5cbabd32985133f5eb02cce5aeb4223b923"
     else
-      url "https://github.com/ratch-job/ratch-job/releases/download/v0.1.5/ratchjob-x86_64-unknown-linux-musl-v0.1.5.tar.gz"
-      sha256 "9340b46cea21ccf0817d72c156eddd973360849ff76df7b7786df41f6eba0cde"
+      url "https://github.com/ratch-job/ratch-job/releases/download/v0.2.2/ratchjob-x86_64-unknown-linux-musl-v0.2.2.tar.gz"
+      sha256 "152e8535efc71d2041948ae67b23b0260d63a2c9f6604b2ec16b7b4b2f5cb1f8"
     end
   end
 
